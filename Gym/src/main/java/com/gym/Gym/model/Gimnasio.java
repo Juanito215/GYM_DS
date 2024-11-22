@@ -14,21 +14,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Rutinas {
+public class Gimnasio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Esto genera un valor autoincrementable para la id
-    private Long idRutina;
+    private Long idGimnasio;
 
     @NotBlank
     private String nombre;
 
-    @NotBlank
-    private String objetivo;
+    private String direccion;
 
-    private String descripcion;
+    private String telefono;
 
-    private String nivel_entrenamiento;
 }
-
-

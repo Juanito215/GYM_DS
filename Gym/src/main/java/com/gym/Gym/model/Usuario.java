@@ -25,31 +25,10 @@ public class Usuario {
     @NotBlank
     private String nombre;
 
-    @NotBlank
-    private String objetivo;
+    private String descripcion;
 
-    private double peso;
+    private String ubicacion;
 
-    private double altura;
-
-    private double porcentaje_Grasa ;
-
-    private String anatomia;
-
-    private String genero;
-
-    private String nivel_entrenamiento;
-
-    private int edad;
-
-    private String alimentacion;
-
-    @Email
-
-    @NotBlank private String correo;
-
-    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
-    private String contrasena;
 
 }
 
