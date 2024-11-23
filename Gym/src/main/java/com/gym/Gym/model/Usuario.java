@@ -1,16 +1,16 @@
 package com.gym.Gym.model;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
+@Table(name = "usuarios")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,12 +22,27 @@ public class Usuario {
 
     @NotBlank
     private String nombre;
+    @NotBlank
+    private String objetivo;
+    private double peso;
 
-    private String descripcion;
+    private double altura;
 
-    private String ubicacion;
+    private double porcentaje_Grasa ;
 
+    private String anatomia;
 
+    private String genero;
+
+    private String nivel_entrenamiento;
+
+    private int edad;
+
+    private String alimentacion;
+
+    @Email
+    @NotBlank private String correo;
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
+
+    private String contrasena;
 }
-
-
