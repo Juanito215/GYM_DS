@@ -25,4 +25,30 @@ public class UsuarioService {
 
         return usuarios;
     }
+
+
+    public Usuario UsuarioExistente(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("El usuario con id:" + id + "no existe"));
+    }
+
+    public Usuario actualizarUsuario(Long id, Usuario usuario) {
+        return usuarioRepository.findById(id)
+                .map(u -> {
+                    u.setNombre(usuario.getNombre());
+                    u.setGenero(usuario.getGenero());
+                    u.setCorreo(usuario.getCorreo());
+                    u.setContrasena(usuario.getContrasena());
+                    u.setObjetivo(usuario.getObjetivo());
+                    u.setAnatomia(usuario.getAnatomia());
+                    u.setAltura(usuario.getAltura());
+                    u.setPeso(usuario.getPeso());
+                    u.setEdad(usuario.getEdad());
+                    u.setAlimentacion(usuario.getAlimentacion());
+                    return usuarioRepository.save(u);
+                })
+                .orElseThrow(() -> new RuntimeException("El usuario con id:" + id + "no existe"));
+
+
+    }
 }

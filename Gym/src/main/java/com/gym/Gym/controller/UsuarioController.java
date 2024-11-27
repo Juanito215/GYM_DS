@@ -22,7 +22,6 @@ public class UsuarioController {
         return ResponseEntity.ok(nuevoUsuario);
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<String> loginUsuario(@RequestBody Usuario usuario) {
         Optional<Usuario> usuarioExistente = usuarioService.loginUsuario(usuario.getCorreo(), usuario.getContrasena());
@@ -32,4 +31,15 @@ public class UsuarioController {
             return ResponseEntity.status(401).body("Credenciales incorrectas");
         }
     }
+
+    @PutMapping("/api/ActualizarUsuario/{id}")
+    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+        Usuario usuarioActualizado = usuarioService.actualizarUsuario(id, usuario);
+        return ResponseEntity.ok(usuarioActualizado);
+
+    }
+
+
+
+
 }
