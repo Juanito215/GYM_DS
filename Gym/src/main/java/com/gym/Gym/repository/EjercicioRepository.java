@@ -9,4 +9,5 @@ public interface EjercicioRepository extends JpaRepository<Ejercicios, Long> {
 
     // Método para buscar un ejercicio por nombre
     Optional<Ejercicios> findByNombre(String nombre);
+    Optional<Ejercicios> findByZonaCuerpo(String zonaCuerpo);
 }

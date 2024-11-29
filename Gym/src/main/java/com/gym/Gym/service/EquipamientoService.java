@@ -5,6 +5,8 @@ import com.gym.Gym.repository.EquipamientoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EquipamientoService  {
 

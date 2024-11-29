@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EjercicioService {
@@ -27,7 +28,7 @@ public class EjercicioService {
 
         // Validación: Verificar que todos los equipamientos asociados al ejercicio existan
         for (Equipamiento equipamiento : ejercicio.getEquipamientos()) {
-            if (!equipamientoRepository.existsById(equipamiento.getId())) {
+            if (!equipamientoRepository.existsById(equipamiento.getIdEquipamiento())) {
                 throw new IllegalArgumentException("Uno de los equipamientos no existe.");
             }
         }
@@ -53,7 +54,7 @@ public class EjercicioService {
 
         // Validación: Verificar que todos los equipamientos asociados al ejercicio existan
         for (Equipamiento equipamiento : ejercicioExistente.getEquipamientos()) {
-            if (!equipamientoRepository.existsById(equipamiento.getId())) {
+            if (!equipamientoRepository.existsById(equipamiento.getIdEquipamiento())) {
                 throw new IllegalArgumentException("Uno de los equipamientos no existe.");
             }
         }
@@ -63,7 +64,7 @@ public class EjercicioService {
     }
 
     // Método para obtener ejercicios por zona del cuerpo
-    public List<Ejercicios> obtenerEjerciciosPorZonaCuerpo(String zonaCuerpo) {
+    public Optional<Ejercicios> obtenerEjerciciosPorZonaCuerpo(String zonaCuerpo) {
         return ejercicioRepository.findByZonaCuerpo(zonaCuerpo);
     }
 

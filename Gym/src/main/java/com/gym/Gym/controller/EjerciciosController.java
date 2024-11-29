@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/ejercicios")
@@ -37,8 +38,8 @@ public class EjerciciosController {
 
     // Obtener ejercicios por zona del cuerpo
     @GetMapping("/por-zona-cuerpo")
-    public ResponseEntity<List<Ejercicios>> obtenerEjerciciosPorZonaCuerpo(@RequestParam String zonaCuerpo) {
-        List<Ejercicios> ejercicios = ejercicioService.obtenerEjerciciosPorZonaCuerpo(zonaCuerpo);
+    public ResponseEntity<Optional<Ejercicios>> obtenerEjerciciosPorZonaCuerpo(@RequestParam String zonaCuerpo) {
+        Optional<Ejercicios> ejercicios = ejercicioService.obtenerEjerciciosPorZonaCuerpo(zonaCuerpo);
         return ResponseEntity.ok(ejercicios);
     }
 

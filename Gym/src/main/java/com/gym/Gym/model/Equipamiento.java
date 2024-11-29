@@ -38,4 +38,5 @@
         @JoinColumn(name = "id_gimnasio", nullable = false) // Define la clave foránea
 
         private Set<Gimnasio> gimnasio;
+
     }
