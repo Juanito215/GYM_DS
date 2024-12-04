@@ -13,42 +13,47 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    // Registro de un nuevo usuario
     public Usuario registrarUsuario(Usuario usuario) {
+        // Podrías validar aquí si ya existe un usuario con el mismo correo
+        if (usuarioRepository.findByCorreo(usuario.getCorreo()).isPresent()) {
+            throw new RuntimeException("El correo ya está registrado");
+        }
         return usuarioRepository.save(usuario);
     }
 
+    // Inicio de sesión
     public Optional<Usuario> loginUsuario(String correo, String contrasena) {
-        Optional<Usuario> usuarios = usuarioRepository.findByCorreo(correo)
-                .filter(u -> u.getContrasena().equals(contrasena));
-
-        usuarios.ifPresent(u -> System.out.println("Usuario autenticado: " + u));
-
-        return usuarios;
-    }
-
-
-    public Usuario UsuarioExistente(Long id) {
-        return usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("El usuario con id:" + id + "no existe"));
-    }
-
-    public Usuario actualizarUsuario(Long id, Usuario usuario) {
-        return usuarioRepository.findById(id)
+        return usuarioRepository.findByCorreo(correo)
+                .filter(u -> u.getContrasena().equals(contrasena))
                 .map(u -> {
-                    u.setNombre(usuario.getNombre());
-                    u.setGenero(usuario.getGenero());
-                    u.setCorreo(usuario.getCorreo());
-                    u.setContrasena(usuario.getContrasena());
-                    u.setObjetivo(usuario.getObjetivo());
-                    u.setAnatomia(usuario.getAnatomia());
-                    u.setAltura(usuario.getAltura());
-                    u.setPeso(usuario.getPeso());
-                    u.setEdad(usuario.getEdad());
-                    u.setAlimentacion(usuario.getAlimentacion());
-                    return usuarioRepository.save(u);
-                })
-                .orElseThrow(() -> new RuntimeException("El usuario con id:" + id + "no existe"));
+                    System.out.println("Usuario autenticado: " + u.getNombre());
+                    return u;
+                });
+    }
 
+    // Buscar usuario por ID
+    public Usuario buscarUsuarioPorId(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("El usuario con id: " + id + " no existe"));
+    }
 
+    // Actualizar usuario existente
+    public Usuario actualizarUsuario(Long id, Usuario usuario) {
+        Usuario usuarioExistente = buscarUsuarioPorId(id); // Reutiliza el método buscarUsuarioPorId
+
+        // Actualiza los campos
+        if (usuario.getNombre() != null) usuarioExistente.setNombre(usuario.getNombre());
+        if (usuario.getGenero() != null) usuarioExistente.setGenero(usuario.getGenero());
+        if (usuario.getCorreo() != null) usuarioExistente.setCorreo(usuario.getCorreo());
+        if (usuario.getContrasena() != null) usuarioExistente.setContrasena(usuario.getContrasena());
+        if (usuario.getObjetivo() != null) usuarioExistente.setObjetivo(usuario.getObjetivo());
+        if (usuario.getAnatomia() != null) usuarioExistente.setAnatomia(usuario.getAnatomia());
+        if (usuario.getAltura() > 0) usuarioExistente.setAltura(usuario.getAltura());
+        if (usuario.getPeso() > 0) usuarioExistente.setPeso(usuario.getPeso());
+        if (usuario.getEdad() > 0) usuarioExistente.setEdad(usuario.getEdad());
+        if (usuario.getAlimentacion() != null) usuarioExistente.setAlimentacion(usuario.getAlimentacion());
+
+        return usuarioRepository.save(usuarioExistente);
     }
 }
