@@ -1,11 +1,6 @@
     package com.gym.Gym.model;
 
-    import jakarta.persistence.Entity;
-    import jakarta.persistence.GeneratedValue;
-    import jakarta.persistence.GenerationType;
-    import jakarta.persistence.Id;
-    import jakarta.persistence.JoinColumn;
-    import jakarta.persistence.ManyToMany;
+    import jakarta.persistence.*;
     import jakarta.validation.constraints.NotBlank;
     import lombok.AllArgsConstructor;
     import lombok.Data;
@@ -34,7 +29,7 @@
         private String descripcion;
 
         // Relación ManyToOne con Gimnasio
-        @ManyToMany
+        @OneToMany(mappedBy = "Gimnasio") // Define la relación inversa
         @JoinColumn(name = "id_gimnasio", nullable = false) // Define la clave foránea
 
         private Set<Gimnasio> gimnasio;
