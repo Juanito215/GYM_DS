@@ -25,7 +25,7 @@ public class UsuarioController {
     // Inicio de sesión
     @PostMapping("/login")
     public ResponseEntity<String> loginUsuario(@RequestBody Usuario usuario) {
-        Optional<Usuario> usuarioExistente = usuarioService.loginUsuario(usuario.getCorreo(), usuario.getContrasena());
+        Optional<Usuario> usuarioExistente = usuarioService.loginUsuario(usuario.getEmail(), usuario.getContrasena());
         if (usuarioExistente.isPresent()) {
             return ResponseEntity.ok("Inicio de sesión exitoso");
         } else {

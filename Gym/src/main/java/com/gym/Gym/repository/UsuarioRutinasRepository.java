@@ -1,4 +1,8 @@
-package com.gym.Gym.repository;
-
-public interface UsuarioRutinasRepository {
-}
+//package com.gym.Gym.repository;
+//
+//
+//import org.springframework.stereotype.Repository;
+//
+//@Repository
+//public interface UsuarioRutinasRepository {
+//}

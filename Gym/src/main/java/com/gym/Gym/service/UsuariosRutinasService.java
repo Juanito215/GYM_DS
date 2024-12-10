@@ -1,4 +1,4 @@
-package com.gym.Gym.service;
-
-public class UsuariosRutinasService {
-}
+//package com.gym.Gym.service;
+//
+//public class UsuariosRutinasService {
+//}

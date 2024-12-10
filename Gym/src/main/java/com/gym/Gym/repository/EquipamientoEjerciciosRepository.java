@@ -1,4 +1,8 @@
-package com.gym.Gym.repository;
-
-public interface EquipamientoEjerciciosRepository {
-}
+//package com.gym.Gym.repository;
+//
+//
+//import org.springframework.stereotype.Repository;
+//
+//@Repository
+//public interface EquipamientoEjerciciosRepository {
+//}

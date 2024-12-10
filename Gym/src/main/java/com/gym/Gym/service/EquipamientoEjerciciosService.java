@@ -1,4 +1,4 @@
-package com.gym.Gym.service;
-
-public class EquipamientoEjerciciosService {
-}
+//package com.gym.Gym.service;
+//
+//public class EquipamientoEjerciciosService {
+//}

@@ -1,4 +1,4 @@
-package com.gym.Gym.controller;
-
-public class UsuarioRutinasController {
-}
+//package com.gym.Gym.controller;
+//
+//public class UsuarioRutinasController {
+//}

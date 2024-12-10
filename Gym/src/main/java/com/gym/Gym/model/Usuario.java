@@ -30,7 +30,7 @@ public class Usuario {
 
     private double porcentaje_Grasa ;
 
-    private String anatomia;
+    private String tipo_anatomia;
 
     private String genero;
 
@@ -41,7 +41,9 @@ public class Usuario {
     private String alimentacion;
 
     @Email
-    @NotBlank private String correo;
+    @NotBlank
+    private String email;
+
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
 
     private String contrasena;
