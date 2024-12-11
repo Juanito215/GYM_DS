@@ -32,14 +32,6 @@ public class Usuario {
 
     private String tipo_anatomia;
 
-    private String genero;
-
-    private String nivel_entrenamiento;
-
-    private int edad;
-
-    private String alimentacion;
-
     @Email
     @NotBlank
     private String email;

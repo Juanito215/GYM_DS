@@ -3,11 +3,11 @@ package com.gym.Gym.controller;
 import com.gym.Gym.model.Rutinas;
 import com.gym.Gym.service.RutinasService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/rutinas")
+@CrossOrigin("http://localhost:3000")
 public class RutinasController {
 
     private final RutinasService rutinasService;

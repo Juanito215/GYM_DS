@@ -47,15 +47,12 @@ public class UsuarioService {
 
         // Actualiza los campos
         if (usuario.getNombre() != null) usuarioExistente.setNombre(usuario.getNombre());
-        if (usuario.getGenero() != null) usuarioExistente.setGenero(usuario.getGenero());
         if (usuario.getEmail() != null) usuarioExistente.setEmail(usuario.getEmail());
         if (usuario.getContrasena() != null) usuarioExistente.setContrasena(usuario.getContrasena());
         if (usuario.getObjetivo() != null) usuarioExistente.setObjetivo(usuario.getObjetivo());
         if (usuario.getTipo_anatomia() != null) usuarioExistente.setTipo_anatomia(usuario.getTipo_anatomia());
         if (usuario.getAltura() > 0) usuarioExistente.setAltura(usuario.getAltura());
         if (usuario.getPeso() > 0) usuarioExistente.setPeso(usuario.getPeso());
-        if (usuario.getEdad() > 0) usuarioExistente.setEdad(usuario.getEdad());
-        if (usuario.getAlimentacion() != null) usuarioExistente.setAlimentacion(usuario.getAlimentacion());
 
         return usuarioRepository.save(usuarioExistente);
     }

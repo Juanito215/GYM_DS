@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
+@CrossOrigin("http://localhost:3000") //Modificar en caso de que su localhost del front sea diferente
 public class    UsuarioController {
 
     @Autowired
