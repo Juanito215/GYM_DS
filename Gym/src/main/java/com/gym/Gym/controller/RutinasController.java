@@ -37,6 +37,4 @@ public class RutinasController {
         return ResponseEntity.ok(rutinasService.actualizarRutina(id, rutinas));
     }
 
-
-
 }

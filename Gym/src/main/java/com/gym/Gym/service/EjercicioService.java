@@ -1,78 +1,42 @@
-//package com.gym.Gym.service;
-//
-//import com.gym.Gym.model.Ejercicios;
-//import com.gym.Gym.model.Equipamiento;
-//import com.gym.Gym.repository.EjercicioRepository;
-//import com.gym.Gym.repository.EquipamientoRepository;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.List;
-//import java.util.Optional;
-//
-//@Service
-//public class EjercicioService {
-//
-//    @Autowired
-//    private EjercicioRepository ejercicioRepository;
-//
-//    @Autowired
-//    private EquipamientoRepository equipamientoRepository;
-//
-//    // Método para registrar un nuevo ejercicio
-//    public Ejercicios registrarEjercicio(Ejercicios ejercicio) {
-//        // Validación: Verificar si el ejercicio ya existe por nombre
-//        if (ejercicioRepository.findByNombre(ejercicio.getNombre()).isPresent()) {
-//            throw new IllegalArgumentException("Ya existe un ejercicio con el nombre: " + ejercicio.getNombre());
-//        }
-//
-//        // Validación: Verificar que todos los equipamientos asociados al ejercicio existan
-//        for (Equipamiento equipamiento : ejercicio.getEquipamientos()) {
-//            if (!equipamientoRepository.existsById(equipamiento.getIdEquipamiento())) {
-//                throw new IllegalArgumentException("Uno de los equipamientos no existe.");
-//            }
-//        }
-//
-//        // Guardar el ejercicio
-//        return ejercicioRepository.save(ejercicio);
-//    }
-//
-//    // Método para obtener todos los ejercicios
-//    public List<Ejercicios> obtenerTodosEjercicios() {
-//        return ejercicioRepository.findAll();
-//    }
-//
-//    // Método para actualizar un ejercicio
-//    public Ejercicios actualizarEjercicio(Long id, Ejercicios ejercicioActualizado) {
-//        Ejercicios ejercicioExistente = ejercicioRepository.findById(id)
-//            .orElseThrow(() -> new IllegalArgumentException("No se encontró el ejercicio con ID: " + id));
-//
-//        ejercicioExistente.setNombre(ejercicioActualizado.getNombre());
-//        ejercicioExistente.setDescripcion(ejercicioActualizado.getDescripcion());
-//        ejercicioExistente.setZonaCuerpo(ejercicioActualizado.getZonaCuerpo());
-//        ejercicioExistente.setEquipamientos(ejercicioActualizado.getEquipamientos());
-//
-//        // Validación: Verificar que todos los equipamientos asociados al ejercicio existan
-//        for (Equipamiento equipamiento : ejercicioExistente.getEquipamientos()) {
-//            if (!equipamientoRepository.existsById(equipamiento.getIdEquipamiento())) {
-//                throw new IllegalArgumentException("Uno de los equipamientos no existe.");
-//            }
-//        }
-//
-//        // Guardar los cambios
-//        return ejercicioRepository.save(ejercicioExistente);
-//    }
-//
-//    // Método para obtener ejercicios por zona del cuerpo
-//    public Optional<Ejercicios> obtenerEjerciciosPorZonaCuerpo(String zonaCuerpo) {
-//        return ejercicioRepository.findByZonaCuerpo(zonaCuerpo);
-//    }
-//
-//    // Método para eliminar un ejercicio
-//    public void eliminarEjercicio(Long id) {
-//        if (!ejercicioRepository.existsById(id)) {
-//            throw new IllegalArgumentException("No se encontró el ejercicio con ID: " + id);
-//        }
-//        ejercicioRepository.deleteById(id);
-//    }
-//}
+package com.gym.Gym.service;
+
+import com.gym.Gym.model.Ejercicios;
+import com.gym.Gym.repository.EjercicioRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class EjercicioService {
+
+    private final EjercicioRepository ejerciciosRepository;
+
+    public EjercicioService(EjercicioRepository ejerciciosRepository) {
+        this.ejerciciosRepository = ejerciciosRepository;
+    }
+
+    public Ejercicios agregarEjercicio(Ejercicios ejercicios) {
+        return ejerciciosRepository.save(ejercicios);
+    }
+
+    public List<Ejercicios> listarEjercicios() {
+        return ejerciciosRepository.findAll();
+    }
+
+    public Ejercicios buscarEjercicio(String nombre) {
+        return ejerciciosRepository.findByNombre(nombre).orElseThrow(() -> new RuntimeException("Ejercicio no encontrado"));
+    }
+
+    public Ejercicios actualizarEjercicio(String nombre, Ejercicios ejercicios) {
+        Ejercicios ejercicios1 = ejerciciosRepository.findByNombre(nombre)
+                .orElseThrow(() -> new RuntimeException("Ejercicio no encontrado: " + nombre));
+
+        ejercicios1.setNombre(ejercicios.getNombre());
+        ejercicios1.setDescripcion(ejercicios.getDescripcion());
+        ejercicios1.setZona_cuerpo(ejercicios.getZona_cuerpo());
+
+        return ejerciciosRepository.save(ejercicios1);
+    }
+
+
+}
