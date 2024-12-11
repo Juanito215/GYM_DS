@@ -7,6 +7,7 @@ import org.apache.naming.factory.SendMailFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -57,5 +58,9 @@ public class UsuarioService {
         if (usuario.getAlimentacion() != null) usuarioExistente.setAlimentacion(usuario.getAlimentacion());
 
         return usuarioRepository.save(usuarioExistente);
+    }
+
+    public List<Usuario> listarUsuarios() {
+        return usuarioRepository.findAll();
     }
 }

@@ -44,7 +44,7 @@ public class Usuario {
     @NotBlank
     private String email;
 
+    @NotBlank
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
-
     private String contrasena;
 }

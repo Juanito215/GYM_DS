@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
-public class UsuarioController {
+public class    UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
@@ -35,8 +36,14 @@ public class UsuarioController {
 
     // Actualizar usuario
     @PutMapping("/actualizar-usuario/{id}")
-    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> actualizarUsuario(@RequestParam Long id, @RequestBody Usuario usuario) {
         Usuario usuarioActualizado = usuarioService.actualizarUsuario(id, usuario);
         return ResponseEntity.ok(usuarioActualizado);
+    }
+    // Listar usuarios
+    @GetMapping("/listar-usuarios")
+    public ResponseEntity<List<Usuario>> listarUsuarios() {
+        List<Usuario> usuarios = usuarioService.listarUsuarios();
+        return ResponseEntity.ok(usuarios);
     }
 }
