@@ -6,29 +6,31 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "equipamiento_ejercicios")
+@Table(name = "rutina_ejercicios")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EquipamientoEjercicios {
+public class RutinaEjercicios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "equipamiento_id", referencedColumnName = "id", nullable = false)
-    private Equipamiento equipamiento; // Relación con la tabla Equipamiento
+    @JoinColumn(name = "rutina_id", referencedColumnName = "id", nullable = false)
+    private Rutinas rutina; // Relación con la tabla Rutinas
 
     @ManyToOne
     @JoinColumn(name = "ejercicio_id", referencedColumnName = "id", nullable = false)
     private Ejercicios ejercicio; // Relación con la tabla Ejercicios
 
-    private String descripcion;
+    private int repeticiones;
 
-    // Campos temporales para recibir los IDs desde el JSON
+    private int series;
+
+    // Campos temporales para recibir IDs desde el JSON
     @Transient
-    private Long equipamientoId;
+    private Long rutinaId;
 
     @Transient
     private Long ejercicioId;
