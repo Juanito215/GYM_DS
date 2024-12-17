@@ -18,11 +18,15 @@ public class Progreso {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
-    private Usuario usuario_id;
+    private Usuario usuario; // Relación con la tabla Usuario
 
     private Double peso;
 
     private Double porcentaje_grasa;
 
     private String comentarios;
+
+    // Campo temporal para recibir el ID del usuario desde el JSON
+    @Transient
+    private Long usuarioId;
 }

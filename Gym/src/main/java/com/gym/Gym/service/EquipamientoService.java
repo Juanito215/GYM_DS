@@ -6,6 +6,8 @@ import com.gym.Gym.repository.EquipamientoRepository;
 import com.gym.Gym.repository.GimnasioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EquipamientoService {
 
@@ -29,4 +31,37 @@ public class EquipamientoService {
         // Guardar el equipamiento en la base de datos
         return equipamientoRepository.save(equipamiento);
     }
+
+    public List<Equipamiento> listarEquipamiento() {
+        return equipamientoRepository.findAll();
+    }
+
+    public Equipamiento buscarEquipamiento(Long id) {
+        return equipamientoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Equipamiento no encontrado con ID: " + id));
+    }
+
+    public Equipamiento actualizarEquipamiento(Long id, Equipamiento equipamientoActualizado) {
+        // Buscar el equipamiento por ID
+        Equipamiento equipamientoExistente = equipamientoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Equipamiento no encontrado con ID: " + id));
+
+        // Actualizar los campos básicos
+        equipamientoExistente.setNombre(equipamientoActualizado.getNombre());
+        equipamientoExistente.setDescripcion(equipamientoActualizado.getDescripcion());
+        equipamientoExistente.setUbicacion(equipamientoActualizado.getUbicacion());
+
+        // Validar y asignar el gimnasio
+        if (equipamientoActualizado.getGimnasio() != null) {
+            Long gimnasioId = equipamientoActualizado.getGimnasio().getId_gym();
+            Gimnasio gimnasio = gimnasioRepository.findById(gimnasioId)
+                    .orElseThrow(() -> new RuntimeException("Gimnasio no encontrado con ID: " + gimnasioId));
+            equipamientoExistente.setGimnasio(gimnasio);
+        }
+
+        // Guardar los cambios en la base de datos
+        return equipamientoRepository.save(equipamientoExistente);
+    }
+
+
 }

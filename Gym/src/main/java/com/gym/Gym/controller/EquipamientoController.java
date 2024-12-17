@@ -2,7 +2,6 @@ package com.gym.Gym.controller;
 
 import com.gym.Gym.model.Equipamiento;
 import com.gym.Gym.service.EquipamientoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,4 +20,22 @@ public class EquipamientoController {
         Equipamiento nuevoEquipamiento = equipamientoService.agregarEquipamiento(equipamiento);
         return ResponseEntity.ok(nuevoEquipamiento);
     }
+
+    @GetMapping("/listar-equipamiento")
+    public ResponseEntity<?> listarEquipamiento() {
+        return ResponseEntity.ok(equipamientoService.listarEquipamiento());
+    }
+
+    @GetMapping("/buscar-equipamiento/{id}")
+    public ResponseEntity<?> buscarEquipamiento(@PathVariable Long id) {
+        return ResponseEntity.ok(equipamientoService.buscarEquipamiento(id));
+    }
+
+    @PutMapping("/actualizar-equipamiento/{id}")
+    public ResponseEntity<Equipamiento> actualizarEquipamiento(@PathVariable Long id, @RequestBody Equipamiento equipamientoActualizado) {
+        Equipamiento equipamiento = equipamientoService.actualizarEquipamiento(id, equipamientoActualizado);
+        return ResponseEntity.ok(equipamiento);
+    }
+
 }
+
