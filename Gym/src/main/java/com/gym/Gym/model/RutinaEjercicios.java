@@ -17,16 +17,13 @@ public class RutinaEjercicios {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "rutina_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "rutina_id", referencedColumnName = "id", nullable = true)
     private Rutinas rutina; // Relación con la tabla Rutinas
 
     @ManyToOne
     @JoinColumn(name = "ejercicio_id", referencedColumnName = "id", nullable = false)
     private Ejercicios ejercicio; // Relación con la tabla Ejercicios
 
-    private int repeticiones;
-
-    private int series;
 
     // Campos temporales para recibir IDs desde el JSON
     @Transient

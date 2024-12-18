@@ -20,14 +20,12 @@ public class Equipamiento {
     @NotBlank(message = "El nombre del equipamiento no puede estar vacío.")
     private String nombre;
 
-    private String descripcion;
-
-    private String ubicacion;
+    //private String descripcion;
 
     @ManyToOne
-    @JoinColumn(name = "gimnasio_id", nullable = false) // Relación con gimnasio
+    @JoinColumn(name = "gimnasio_id", nullable = true) // Relación con gimnasio
     private Gimnasio gimnasio;
 
-    @Transient
-    private Long gimnasioId;
+    //@Transient
+    //private Long gimnasioId;
 }

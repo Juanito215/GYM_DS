@@ -8,6 +8,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/rutina-ejercicios")
+@CrossOrigin("http://localhost:3000") //Modificar en caso de que su localhost del front sea diferente
+
 public class RutinaEjerciciosController {
 
     private final RutinaEjerciciosService rutinaEjerciciosService;

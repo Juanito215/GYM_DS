@@ -17,6 +17,7 @@ public class EjercicioService {
 
     public Ejercicios agregarEjercicio(Ejercicios ejercicios) {
         return ejerciciosRepository.save(ejercicios);
+        
     }
 
     public List<Ejercicios> listarEjercicios() {
@@ -33,9 +34,11 @@ public class EjercicioService {
 
         ejercicios1.setNombre(ejercicios.getNombre());
         ejercicios1.setDescripcion(ejercicios.getDescripcion());
-        ejercicios1.setZona_cuerpo(ejercicios.getZona_cuerpo());
+        ejercicios1.setRepeticiones(ejercicios.getRepeticiones());
+        ejercicios1.setSeries(ejercicios.getSeries());
 
         return ejerciciosRepository.save(ejercicios1);
+
     }
 
 

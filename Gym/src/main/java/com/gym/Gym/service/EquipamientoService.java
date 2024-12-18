@@ -21,13 +21,7 @@ public class EquipamientoService {
 
     public Equipamiento agregarEquipamiento(Equipamiento equipamiento) {
         // Recuperar el gimnasio por gimnasioId
-        Long gimnasioId = equipamiento.getGimnasioId();
-        Gimnasio gimnasio = gimnasioRepository.findById(gimnasioId)
-                .orElseThrow(() -> new RuntimeException("Gimnasio no encontrado con ID: " + gimnasioId));
-
         // Asignar el gimnasio recuperado al objeto equipamiento
-        equipamiento.setGimnasio(gimnasio);
-
         // Guardar el equipamiento en la base de datos
         return equipamientoRepository.save(equipamiento);
     }
@@ -48,9 +42,6 @@ public class EquipamientoService {
 
         // Actualizar los campos básicos
         equipamientoExistente.setNombre(equipamientoActualizado.getNombre());
-        equipamientoExistente.setDescripcion(equipamientoActualizado.getDescripcion());
-        equipamientoExistente.setUbicacion(equipamientoActualizado.getUbicacion());
-
         // Validar y asignar el gimnasio
         if (equipamientoActualizado.getGimnasio() != null) {
             Long gimnasioId = equipamientoActualizado.getGimnasio().getId_gym();

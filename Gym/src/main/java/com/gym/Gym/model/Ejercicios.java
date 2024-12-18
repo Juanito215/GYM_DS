@@ -22,6 +22,9 @@ public class Ejercicios {
 
     private String descripcion;
 
-    private String zona_cuerpo;
+    private int repeticiones;
+
+    private int series;
+
 
 }

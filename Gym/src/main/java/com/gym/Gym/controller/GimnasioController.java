@@ -2,14 +2,15 @@ package com.gym.Gym.controller;
 
 import com.gym.Gym.model.Gimnasio;
 import com.gym.Gym.service.GimnasioService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:3000") //Modificar en caso de que su localhost del front sea diferente
+
 @RequestMapping("/api/gimnasio")
 
 public class GimnasioController {

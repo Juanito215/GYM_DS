@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/equipamiento")
+@CrossOrigin("http://localhost:3000") //Modificar en caso de que su localhost del front sea diferente
+
 public class EquipamientoController {
 
     private final EquipamientoService equipamientoService;

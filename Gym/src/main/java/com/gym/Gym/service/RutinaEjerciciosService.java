@@ -70,8 +70,7 @@ public class RutinaEjerciciosService {
             existente.setEjercicio(ejercicio);
         }
 
-        existente.setRepeticiones(rutinaEjerciciosActualizado.getRepeticiones());
-        existente.setSeries(rutinaEjerciciosActualizado.getSeries());
+
 
         return rutinaEjerciciosRepository.save(existente);
     }

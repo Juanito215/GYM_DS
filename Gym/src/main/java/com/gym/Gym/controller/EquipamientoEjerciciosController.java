@@ -9,6 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/equipamiento-ejercicios")
+@CrossOrigin("http://localhost:3000") //Modificar en caso de que su localhost del front sea diferente
+
 public class EquipamientoEjerciciosController {
 
     private final EquipamientoEjerciciosService equipamientoEjerciciosService;
